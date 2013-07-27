@@ -1,0 +1,6 @@
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\bin\Debug\HabrWaveTest.exe.config
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\obj\Debug\HabrWaveTest.csprojResolveAssemblyReference.cache
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\bin\Debug\HabrWaveTest.exe
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\bin\Debug\HabrWaveTest.pdb
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\obj\Debug\HabrWaveTest.exe
+c:\users\replex\documents\visual studio 2013\Projects\HabrWaveTest\HabrWaveTest\obj\Debug\HabrWaveTest.pdb
