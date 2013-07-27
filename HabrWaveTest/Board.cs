@@ -13,7 +13,6 @@ namespace HabrWaveTest
         private SeedCell[,] board;
 
         //private System.Windows.Forms.Timer timer;
-        private System.Diagnostics.Stopwatch stopwatch;
 
         private int currID;
         private Random rnd;
@@ -30,7 +29,6 @@ namespace HabrWaveTest
 
             //timer = new System.Windows.Forms.Timer();
             //timer.Tick += timer_Tick;
-            stopwatch = new System.Diagnostics.Stopwatch();
             Console.CursorVisible = false;
             rnd = new Random();
         }
@@ -38,12 +36,6 @@ namespace HabrWaveTest
         //void timer_Tick(object sender, EventArgs e)
         private void timer_Tick()
         {
-            if (Console.KeyAvailable)
-            {
-                Click();
-                Console.ReadKey(true);
-            }
-
             foreach (var item in board)
             {
                 item.SpawnWave(board);
@@ -53,7 +45,6 @@ namespace HabrWaveTest
             {
                 item.Draw();
             }
-            //co
             //Console.Clear();
         }
 
@@ -74,6 +65,12 @@ namespace HabrWaveTest
              */
             while (true)
             {
+                if (Console.KeyAvailable)
+                {
+                    if(Console.ReadKey(true).Key == ConsoleKey.Escape)
+                        return;
+                    Click();
+                }
                 timer_Tick();
                 System.Threading.Thread.Sleep(period);
             }

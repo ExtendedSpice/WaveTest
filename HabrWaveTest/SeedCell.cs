@@ -27,6 +27,7 @@ namespace HabrWaveTest
             return item1.waveID <= item2.waveID;
         }
 
+        // Конструктор пустой черной клетки
         public SeedCell(int x, int y)
         {
             X = x;
@@ -36,27 +37,7 @@ namespace HabrWaveTest
             waveID = 0;
         }
 
-        /*
-        private SeedCell(int x, int y, ConsoleColor c, int ID, Direction d)
-        {
-            X = x;
-            Y = y;
-            color = c;
-            spawnDirection = Direction.Main;
-            waveID = ID;
-            spawnDirection = d;
-        }
-         */
-
-        private void Replace(ConsoleColor c, int ID, Direction d)
-        {
-            waveColor = c;
-            spawnDirection = Direction.Main;
-            waveID = ID;
-            spawnDirection = d;
-            isNew = true;
-        }
-
+        // Гарантированное создание нового спавнера 
         public void Start(ConsoleColor c, int ID)
         {
             waveColor = c;
@@ -65,25 +46,7 @@ namespace HabrWaveTest
             isNew = true;
         }
 
-        private void Spawn(SeedCell[,] board, Direction d)
-        {
-            int x = X;
-            int y = Y;
-            if (d == Direction.Main)
-                x++;
-            else if (d == Direction.Up)
-                y--;
-            else
-                y++;
-
-            try
-            {
-                if (this > board[x, y])
-                    board[x, y].Replace(waveColor, waveID, d);
-            }
-            catch (IndexOutOfRangeException) { }
-        }
-
+        // Распространение волны за один такт
         public void SpawnWave(SeedCell[,] board)
         {
             if (!isNew && spawnDirection != Direction.Exausted)
@@ -103,6 +66,35 @@ namespace HabrWaveTest
                 }
                 spawnDirection = Direction.Exausted;
             }
+        }
+
+        // Механизм распространения фронта в зависимости от направление d
+        private void Spawn(SeedCell[,] board, Direction d)
+        {
+            int x = X;
+            int y = Y;
+            if (d == Direction.Main)
+                x++;
+            else if (d == Direction.Up)
+                y--;
+            else
+                y++;
+
+            try
+            {
+                if (this > board[x, y])
+                    board[x, y].Update(waveColor, waveID, d);
+            }
+            catch (IndexOutOfRangeException) { }
+        }
+
+        // Перекрашивание клетки
+        private void Update(ConsoleColor c, int ID, Direction d)
+        {
+            waveColor = c;
+            waveID = ID;
+            spawnDirection = d;
+            isNew = true;
         }
 
         public void Draw()
